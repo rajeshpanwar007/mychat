@@ -1,0 +1,22 @@
+{
+  "name": "mychat",
+  "version": "1.0.0",
+  "description": "Chat Application testing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "mychat"
+  },
+  "keywords": [
+    "chat"
+  ],
+  "author": "Rajesh panwar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^2.0.1"
+  }
+}
