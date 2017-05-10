@@ -23,25 +23,18 @@ io.on('connection', function(socket){
     });
 
     setTimeout(function(){
-        socket.send("Send a message in 5 seconds");
+        socket.emit("TestEvent", {description : "Custom event from Server"});
     }, 5000)
 
-    setTimeout(function(){
-        socket.send("Send a message in 10 seconds");
-    }, 10000)
-
-    setTimeout(function(){
-        socket.send("Send a message in 15 seconds");
-    }, 15000)
-
+    socket.on("TestEvent", function(data){
+        console.log("TestEvent : ", data);
+    })
 })
 
 
 app.get('/', function (req, res, next) {
     res.sendfile('index.html');
 });
-
-
 
 
 http.listen(8081, function(){

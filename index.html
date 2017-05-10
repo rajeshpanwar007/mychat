@@ -10,6 +10,15 @@
             console.log(">>>>>>>> Message : ", data);
             document.write(data);
         })
+
+        socket.on('TestEvent', function(data){
+            console.log(">>>>>>>> Message : ", data);
+            document.write(data.description);
+        })
+
+        setTimeout(function(){
+            socket.emit("TestEvent", {description : "Test Event From Client Side"})
+        }, 15000)
     </script>
 </head>
 <body>
