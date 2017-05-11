@@ -15,20 +15,31 @@ app.use(function(req, res, next){
 
 })
 
+var client = 0;
 io.on('connection', function(socket){
     console.log("user Connect");
 
+    client++;
+    socket.emit("newClient", "Welcome to chat Demo");
+
+    socket.broadcast.emit("newClient", client + " user Connected")
+
+    //io.sockets.emit("newClient", client + " user Connected");
+
     socket.on('disconnect', function(){
-        console.log("user Disconnected", arguments);
+        console.log("user Disconnected", client);
+        client--;
+        socket.broadcast.emit("newClient", client + " user Connected")
+        //io.sockets.emit("broadcast", client + " user Connected");
     });
 
-    setTimeout(function(){
-        socket.emit("TestEvent", {description : "Custom event from Server"});
-    }, 5000)
+    //setTimeout(function(){
+    //    socket.emit("TestEvent", {description : "Custom event from Server"});
+    //}, 2000)
 
-    socket.on("TestEvent", function(data){
-        console.log("TestEvent : ", data);
-    })
+    //socket.on("TestEvent", function(data){
+    //    console.log("TestEvent : ", data);
+    //})
 })
 
 
